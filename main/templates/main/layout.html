@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	</head>
+<body>
+
+<div class="topnav">
+    {% block navigation %}
+        {% for menu in menu_list %}
+        <a href="{% url 'main:index' lang=selflang section=menu.urlpath%}"
+           class="list-group-item list-group-item-action text-body text-uppercase">{{ menu | capfirst }}</a>
+    {% endfor %}
+    {% endblock %}
+</div>
+
+<div class="header">
+	<div class="row">
+		<div class="col" style="padding-left: 500px;float: left;">
+			<!--img src="logo.jpeg" alt="logo" -->
+            <img src="{% static "imag/logo.jpeg" %}" alt="My image">
+		</div>
+		<div class="col" style="float: left;">
+			<h1 style="font-family: serif;font-weight: lighter"> Lang</h1>
+		</div>
+		<div class="col" style="float: left;">
+			<h1 style="font-family: sans-serif;"> Lab</h1>
+		</div>
+		<div class="col" style="float: left;">
+			<h1 style="font-family: serif;font-weight: lighter;">
+			{
+				<div class="dropdown">
+  				<button class="dropbtn">{{selflang | capfirst}}</button>
+  					<div class="dropdown-content">
+                        {% for langvar in lang_list %}
+                            {% if langvar != selflang  %}
+                            <a href="{% url 'main:index' lang=langvar section=selfsection%}">{{ langvar | capfirst }}</a>
+                            {% endif %}
+                        {% endfor %}
+  					</div>
+				</div> 
+			}</h1>
+		</div>
+</div>
+
+<div class="row">
+
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+
+  <div class="centralcolumn">
+      {% block centralcolumncontent %}
+      {% endblock%}
+  </div>
+
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>
